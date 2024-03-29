@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import study.datajpa.Entity.Member;
 import study.datajpa.dto.MemberDto;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
@@ -26,4 +27,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     //Dto 조회
     @Query("select new study.datajpa.dto.MemberDto(m.id, m.username, t.name) from Member m join m.team t")
     List<MemberDto> findMemberDto();
+
+    //컬렉션 파라미터 바인딩 - in절로 여러 값을 조회하고 싶을 때 사용
+    @Query("select m from Member m where m.username in :names")
+    List<Member> findByNames(@Param("names") Collection<String> names);
 }
