@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import study.datajpa.Entity.Member;
@@ -47,4 +48,9 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
                 countQuery = "select count(m) from Member m") //countQuery 분리
 //    Slice<Member> findByAge(int age, Pageable pageable);
     Page<Member> findByAge(int age, Pageable pageable);
+
+    //벌크성 수정, 삭제 쿼리일 때 필수 사용, 옵션 - clear 자동 실행
+    @Modifying(clearAutomatically = true)
+    @Query("update Member m set m.age = m.age +1 where m.age >= :age")
+    int bulkAgePlus(@Param("age") int age);
 }
