@@ -164,7 +164,7 @@ class MemberRepositoryTest {
         System.out.println("findMember = " + findMember);
     }
 
-    //페이징
+    //페이징 조건 및 정렬 조건 설정
     @Test
     public void paging() {
         //given
@@ -181,12 +181,13 @@ class MemberRepositoryTest {
         Page<Member> page = memberRepository.findByAge(age, pageRequest);
 
         //then
-        List<Member> content = page.getContent();
-        long totalElements = page.getTotalPages();
+        List<Member> content = page.getContent(); //조회된 데이터
 
-        for (Member member : content) {
-            System.out.println("member" + member);
-        }
-        System.out.println("totalElements = " + totalElements);
+        assertThat(content.size()).isEqualTo(3); //조회된 데이터 수
+        assertThat(page.getTotalElements()).isEqualTo(5); //전체 데이터 수
+        assertThat(page.getNumber()).isEqualTo(0); //페이지 번호
+        assertThat(page.getTotalPages()).isEqualTo(2); //전체 페이지 번호
+        assertThat(page.isFirst()).isTrue(); //첫번째 항목인지
+        assertThat(page.hasNext()).isTrue(); //다음 페이가 있는지
     }
 }
