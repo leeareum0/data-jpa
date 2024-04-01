@@ -72,4 +72,12 @@ public class MemberJpaRepository {
                 .setParameter("age", age)
                 .getSingleResult();
     }
+
+    //벌크성 수정 쿼리
+    //해당 조건에 나이가 조건 이상일 때 나이에 +1 하는 쿼리
+    public int bulkAgePlus(int age) {
+        return em.createQuery("update Member m set m.age = m.age +1" + "where m.age>= :age")
+                .setParameter("age", age)
+                .executeUpdate();
+    }
 }
