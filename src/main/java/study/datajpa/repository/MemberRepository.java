@@ -68,5 +68,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     //메서드 명으로 설정
     @EntityGraph(attributePaths = {"team"})
+//    @EntityGraph("Member.all") //NamedEntityGraph 사용 시
     List<Member> findEntityGraphByUsername(@Param("username") String username);
 }
