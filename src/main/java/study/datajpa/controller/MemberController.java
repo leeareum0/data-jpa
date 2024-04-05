@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import study.datajpa.Entity.Member;
+import study.datajpa.dto.MemberDto;
 import study.datajpa.repository.MemberRepository;
 
 @RestController
@@ -31,9 +32,8 @@ public class MemberController {
 
     // Web 확장 - 페이징과 정렬
     @GetMapping("/members")
-    public Page<Member> list(@PageableDefault(size = 5) Pageable pageable) {
-        Page<Member> page = memberRepository.findAll(pageable);
-        return page;
+    public Page<MemberDto> list(Pageable pageable) {
+        return memberRepository.findAll(pageable).map(MemberDto::new);
     }
 
     @PostConstruct
