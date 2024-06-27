@@ -1,4 +1,4 @@
-package study.datajpa.Entity;
+package study.datajpa.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

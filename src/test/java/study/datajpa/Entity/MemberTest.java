@@ -1,4 +1,4 @@
-package study.datajpa.Entity;
+package study.datajpa.entity;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -10,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.repository.MemberRepository;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional

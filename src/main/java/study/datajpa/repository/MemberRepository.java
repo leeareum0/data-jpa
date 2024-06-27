@@ -4,10 +4,9 @@ import jakarta.persistence.LockModeType;
 import jakarta.persistence.QueryHint;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.query.Param;
-import study.datajpa.Entity.Member;
+import study.datajpa.entity.Member;
 import study.datajpa.dto.MemberDto;
 
 import java.util.Collection;

@@ -1,6 +1,6 @@
 package study.datajpa.repository;
 
-import study.datajpa.Entity.Member;
+import study.datajpa.entity.Member;
 
 import java.util.List;
 
